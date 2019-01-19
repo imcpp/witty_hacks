@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <form class="navbar-form navbar-left" action="{% url 'search' %}" method="POST">
+       {% csrf_token %}
+           <div class="form-group"style="text-align: center; margin-left: 300px;">
+           <input  type="text" class="form-control" placeholder="Search Courses" name="srh">
+
+         <button   type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> </button>
+
+        </div>
+</form>
+<br><br><br><br>
+<label style="text-align=center ; margin-left: 300px;" for="b">rating</label>
+<input id="b" style="text-align: center; " type="radio" name="fil" value="fil" selected="selected">
+<br>
+<label style="text-align=center ; margin-left: 300px;" for="c">price</label>
+<input id="c"style="text-align: center; " type="radio" name="fil" value="fil" >
+<br><br>
+<div >
+   {% if messages %}
+       <ul class="messages" style="color:red;  ">
+         {%for k in messages%}
+             <li > <h1> <b>{{k}}</b> </h1> </li>
+         {%endfor%}
+       </ul>
+     {%endif%}
+
+      {%if all %}
+        <div class="container">
+          <div class="row">
+            <div class="col col-lg-3">
+              <h1>subject</h1>
+
+            </div>
+            <div class="col col-lg-3">
+              <h1>reviews</h1>
+
+            </div>
+            <div class="col col-lg-3">
+              <h1>ratings</h1>
+
+            </div>
+            <div class="col col-lg-3">
+              <h1>price</h1>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {%for courses in all%}
+
+
+              <div class="container">
+                <div class="jumbotron"style=" background-color:#6666ff;color:white;border-radius:25px" >
+                  <div class="row" >
+                    <div class="col col-lg-3 ">
+
+                        <h2>{{courses.course}}</h2>
+
+                    </div>
+                    <div class="col col-lg-3 " >
+                        <h2>{{courses.review}}</h2>
+
+
+                    </div>
+                    <div class="col col-lg-3">
+                          <h2>{{courses.rating}}</h2>
+                    </div>
+                    <div class="col col-lg-3">
+                          <h2>{{courses.price}}</h2><br>
+                          <button   type="submit" class="btn btn-default"> {{courses.website}}</button>
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+              </div>
+
+
+
+                {%endfor%}
+
+
+      {%endif%}
+ </div><br>
+<br><br>
+
+
+
+  </body>
+</html>
