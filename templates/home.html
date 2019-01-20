@@ -2,101 +2,139 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+   .card{
+     margin-bottom: 10px;
+   }
+   section {
+  position: relative;
+  background-color: transparent !important;
+}
+
+section .img {
+  position: absolute;
+  left:0; top:0;
+  background-size: cover;
+  min-height: 350px;
+  width: 100%;
+  opacity: 0.45;
+  background-image: url("https://www.icapps.com/sites/default/files/styles/wide_image/public/React%20Native%20image.jpg?itok=v9IZyGx9");
+  z-index: -1;
+}
+
+section .container {
+  background-color: transparent;
+}
+
+section .container .row {
+
+  padding: 1.5em;
+}
+  </style>
   </head>
   <body>
-    <form class="navbar-form navbar-left" action="{% url 'search' %}" method="POST">
-       {% csrf_token %}
-           <div class="form-group"style="text-align: center; margin-left: 300px;">
-           <input  type="text" class="form-control" placeholder="Search Courses" name="srh">
 
-         <button   type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> </button>
+    <section class="jumbotron">
+      <div class="img"></div>
 
-        </div>
-</form>
-<br><br><br><br>
-<label style="text-align=center ; margin-left: 300px;" for="b">rating</label>
-<input id="b" style="text-align: center; " type="radio" name="fil" value="fil" selected="selected">
-<br>
-<label style="text-align=center ; margin-left: 300px;" for="c">price</label>
-<input id="c"style="text-align: center; " type="radio" name="fil" value="fil" >
-<br><br>
-<div >
-   {% if messages %}
-       <ul class="messages" style="color:red;  ">
-         {%for k in messages%}
-             <li > <h1> <b>{{k}}</b> </h1> </li>
-         {%endfor%}
-       </ul>
-     {%endif%}
+      <div class="container text-center">
 
-      {%if all %}
-        <div class="container">
-          <div class="row">
-            <div class="col col-lg-3">
-              <h1>subject</h1>
+      <form class="form-inline justify-content-center" action="{% url 'search' %}" method="POST" style="margin-top:100px;">
+        {% csrf_token %}
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="course" class="sr-only">Search Course</label>
+      <input type="text" class="form-control" placeholder="Search Courses" name="srh" style="height: 50px;width: 400px;">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" style="height: 50px;width: 150px;"><i class="fa fa-search" aria-hidden="true"></i>
+</button>
+  </form>
 
-            </div>
-            <div class="col col-lg-3">
-              <h1>reviews</h1>
+</div>
+</section>
 
-            </div>
-            <div class="col col-lg-3">
-              <h1>ratings</h1>
-
-            </div>
-            <div class="col col-lg-3">
-              <h1>price</h1>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {%for courses in all%}
-
-
-              <div class="container">
-                <div class="jumbotron"style=" background-color:#6666ff;color:white;border-radius:25px" >
-                  <div class="row" >
-                    <div class="col col-lg-3 ">
-
-                        <h2>{{courses.course}}</h2>
-
-                    </div>
-                    <div class="col col-lg-3 " >
-                        <h2>{{courses.review}}</h2>
-
-
-                    </div>
-                    <div class="col col-lg-3">
-                          <h2>{{courses.rating}}</h2>
-                    </div>
-                    <div class="col col-lg-3">
-                          <h2>{{courses.price}}</h2><br>
-                          <button   type="submit" class="btn btn-default"> {{courses.website}}</button>
-
-                    </div>
-
-                  </div>
-
-
-                </div>
-
-              </div>
-
-
-
-                {%endfor%}
-
-
+    {% if messages %}
+        <ul class="messages" style="color:red;  ">
+          {%for k in messages%}
+              <li > <h1> <b>{{k}}</b> </h1> </li>
+          {%endfor%}
+        </ul>
       {%endif%}
- </div><br>
-<br><br>
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body text-right">
+      <div class="btn-group">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter
+  </button>
+  <div class="dropdown-menu">
+    <a   name='a' value='price' class="dropdown-item" href="#">Price</a>
+    <a   name='a' value='rating'class="dropdown-item" href="#" >Rating</a>
+  </div>
+</div>
+    </div>
+  </div>
+
+  {%if all %}
+  <h5 class="card-header" style="margin-bottom:5px;">Results</h5>
+<div class="row">
+  <div class="col-sm-1 col-lg-1"></div>
 
 
+<div class="col-sm-8 col-lg-8">
+  {%for courses in all%}
+  <a href="{{courses.website}}">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+       <div class="col-sm-3">
+        <img src="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2016/01/Screen-Shot-2016-01-29-at-11.02.05-AM-1200x665.png" alt="..." class="img-thumbnail">
+       </div>
+       <div class="col-sm-6 col-lg-6">
+        <p>{{courses.course}}</p>
+       </div>
+       <div class="col-sm-3 col-lg-3">
+         <h4>Price:
+       <small class="text-muted">{{courses.price}}</small></h4>
+       <h4>Rating:
+     <small class="text-muted">{{courses.rating}}</small></h4>
+     <h4>Reviews:
+   <small class="text-muted">{{courses.review}}</small></h4>
+       </div>
+      </div>
+    </div>
+  </div>
+</a>
+{%endfor%}
 
+
+{%endif%}
+</div>
+<div class="col-sm-3 col-lg-3">
+<div class="card">
+<div class="card-header">Suggested Keyword</div>
+<div class="card-body">
+  <a href="#" class="badge badge-primary">Python</a>
+  <a href="#" class="badge badge-secondary">Android</a>
+  <a href="#" class="badge badge-success">Angular</a>
+  <a href="#" class="badge badge-danger">Bootstrap</a>
+  <a href="#" class="badge badge-warning">php</a>
+  <a href="#" class="badge badge-info">React js</a>
+  <a href="#" class="badge badge-light">Ajax</a>
+  <a href="#" class="badge badge-dark">Jquery</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

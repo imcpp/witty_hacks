@@ -1,0 +1,127 @@
+<!doctype html>
+{%load staticfiles%}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet " href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{%static "css/style.css"%}">
+
+    <title>A22-Batallion</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#"><h2>Find Best Online courses</h2></a>
+  <a class="navbar-brand" href="#">
+    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+  </a>
+</nav>
+    <div class="container" style="position: relative;height:30vh">
+  <div class="search-wrapper">
+    <div class="input-holder" style="box-shadow: 0 0 9px 0px #00000059">
+        <input type="text" class="search-input" placeholder="Type to search" />
+        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+    </div>
+    <span class="close" onclick="searchToggle(this, event);"></span>
+</div>
+</div>
+<div class="jumbotron" style="margin-bottom: 0;padding: 1.4rem 6rem;">
+ <p><h3>1200 Results for Python</h3></p>
+ <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rating</button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div role="separator" class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+    </div>
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rating</button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div role="separator" class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+    </div>
+
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right">Sort</button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div role="separator" class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+    </div>
+</div>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-8">
+
+
+        {% if messages %}
+            <ul class="messages" style="color:red;  ">
+              {%for k in messages%}
+                  <li > <h1> <b>{{k}}</b> </h1> </li>
+              {%endfor%}
+            </ul>
+          {%endif%}
+  {%if all%}
+    {%for courses in all%}
+          <a href="{{courses.website}}"> <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <img src="https://www.udemy.com/staticx/udemy/images/v6/default-meta-image.png" alt="..." class="img-thumbnail">
+                      </div>
+                      <div class="col-md-6">
+                      <div class="card-text"><h3><b>{{courses.course}}</b></h3></div>
+                    </div>
+                    <div class="col-md-3 text-right">
+                      <p><b>Price:</b>{{courses.price}}</p>
+                      <p><b>Rating:</b>{{courses.rating}}</p>
+                      <p><b>Review:</b>{{courses.review}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </a>
+              {%endfor%}
+      {%endif%}
+
+
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-header">Suggested Keyword</div>
+        <div class="card-body">
+     <span class="badge badge-pill badge-primary">python</span>
+<span class="badge badge-pill badge-secondary">Web Developement</span>
+<span class="badge badge-pill badge-success">Android</span>
+<span class="badge badge-pill badge-danger">Django</span>
+<span class="badge badge-pill badge-warning">Jquery</span>
+<span class="badge badge-pill badge-info">React</span>
+<span class="badge badge-pill badge-light">Angular</span>
+<span class="badge badge-pill badge-dark">Javascript</span>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+      <script src="{%static "js/index.js"%}"></script> 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
