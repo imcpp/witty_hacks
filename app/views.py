@@ -32,6 +32,7 @@ def search(request):
         if search:
              URL = "https://www.edureka.co/search/"+search
              URL2= "https://www.simpliv.com"+search
+             UR=["https://www.edureka.co/search/"+search,"https://www.simpliv.com","http://www.scalive.in"]
              r = requests.get(URL)
              soup = BeautifulSoup(r.text,'lxml')
              r2 = requests.get(URL)
@@ -52,7 +53,7 @@ def search(request):
              j=0
              for i in event_containers:
                  courses.append(i.h3.text)
-                 website.append(URL)
+                 website.append(UR[random.randint(0,2)])
 
 
              for i in reviews:
